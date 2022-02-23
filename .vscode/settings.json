@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "lightYieldXe.C": "cpp",
+        "ttree_to_hist.C": "cpp",
+        "ttree_to_hist copy.C": "cpp",
+        "test_ttree_to_hist copy.C": "cpp",
+        "test_ttree_to_hist.C": "cpp",
+        "hsimpleReader.C": "cpp"
+    }
+}
