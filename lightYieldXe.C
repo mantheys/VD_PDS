@@ -1,5 +1,7 @@
 
-void lightYieldXe(){
+void lightYieldXe()
+{
+  
   gROOT->SetStyle("Plain");
  
   TH1D* ht = new TH1D("ht","",641,-0.5,640.5); //histogram for collecting data from files
