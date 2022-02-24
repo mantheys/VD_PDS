@@ -9,7 +9,7 @@ void hsimpleReader()
    TFile* hist = new TFile("hist.root", "RECREATE");
    
    // Create a histogram for the values we read.
-   TH1D* myHist = new TH1D("h1", "ntuple", 100, 0, 1000);
+   TH1D* myHist = new TH1D("h1", "ntuple", 636, 0, 636);
    
    // Open the file containing the tree.
    TFile *myFile = TFile::Open("arapuca.root");
