@@ -12,7 +12,7 @@ void hsimpleReader()
    TH1D* myHist = new TH1D("h1", "ntuple", 636, 0, 636);
    
    // Open the file containing the tree.
-   TFile *myFile = TFile::Open("arapuca.root");
+   TFile *myFile = TFile::Open("/nashome/s/smanthey/standalone/arapuca.root");
    
    // Create a TTreeReader for the tree, for instance by passing the
    // TTree's name and the TDirectory / TFile it is in.
