@@ -23,6 +23,15 @@ RunAction::~RunAction()
 {
 }
 
+std::string convertToString(const double & x, const int & precision = 1)
+{
+    static std::ostringstream ss;
+    ss.str(""); // don't forget to empty the stream
+    ss << std::fixed << std::setprecision(precision) << x;
+
+    return ss.str();
+}
+
 void RunAction::BeginOfRunAction(const G4Run*)
 {  
   
@@ -33,11 +42,11 @@ void RunAction::BeginOfRunAction(const G4Run*)
   
   G4cout << "Using " << man->GetType() << " analysis manager" << G4endl;
 
-  std::string s_x = std::to_string(x0);
-  std::string s_y = std::to_string(y0);
-  std::string s_z = std::to_string(z0);
+  std::string s_x = std::convertToString(x0,4);
+  std::string s_y = std::convertToString(y0,4);
+  std::string s_z = std::convertToString(z0,4);
 
-  G4String root_name = std::string("hist/arapuca")+"_"+s_x+"_"+s_y+"_"+s_z+".root";
+  G4String root_name = std::string("arapuca")+"_"+s_x+"_"+s_y+"_"+s_z+".root";
 
   // Open an output file
   man->OpenFile(root_name);

@@ -11,4 +11,4 @@ for x in $(LC_ALL=en_US.UTF-8 seq $i_x $step_x $f_x) ; do
     done
 done
 
-mv "arapuca"* /nashome/s/smanthey/standalone/
+mv "hist/arapuca"* /nashome/s/smanthey/standalone/
