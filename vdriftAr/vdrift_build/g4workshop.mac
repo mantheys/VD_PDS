@@ -1,0 +1,12 @@
+/tracking/storeTrajectory 1
+
+/run/initialize
+
+# Uncomment this line of you want visualization
+/control/macroPath /dune/app/users/sorel/standalone_sim/vdrift_build
+/control/execute vis.mac
+
+/tracking/verbose 0
+/run/verbose 0
+
+/run/beamOn 100000
