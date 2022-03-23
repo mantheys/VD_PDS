@@ -13,6 +13,7 @@ tar -xzvf vdriftAr_tar.tgz
 chmod u+x vdrift_build/g4workshop
 
 ./vdrift_build/g4workshop $1 $2 $3
-# mv -- "arapuca.root" "arapuca_${1}_${2}_${3}.root"
-eval "$(echo "ifdh cp -D arapuca_${1}_${2}_${3}.root /pnfs/dune/scratch/users/smanthey/vdriftAr/.")"
+# mv -- "arapuca"* "arapuca_${1}_${2}_${3}.root"
+# eval "$(echo "ifdh cp -D arapuca_${1}_${2}_${3}.root /pnfs/dune/scratch/users/smanthey/vdriftAr/.")"
+eval "$(echo "ifdh cp -D arapuca* /pnfs/dune/scratch/users/smanthey/vdriftAr/run/.")"
 
