@@ -185,7 +185,8 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   //Polarization 
   G4ThreeVector polar = Polarisation(dir_vec);
   
-//  fParticleGun->SetParticleEnergy(9.68*eV);
+  // _____ PHOTON ENERGY THAT CHARACTERIZES MEDIUM__________ 
+  //fParticleGun->SetParticleEnergy(9.68*eV);
   fParticleGun->SetParticleEnergy(7.08*eV);
   fParticleGun->SetParticleMomentumDirection(dir_vec);
   fParticleGun->SetParticlePosition(G4ThreeVector(x0*m,y0*m,z0*m));

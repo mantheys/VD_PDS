@@ -13,7 +13,6 @@
 PrimaryGeneratorAction::PrimaryGeneratorAction()
 {
   fParticleGun  = new G4ParticleGun(1);
-
 }
 
 PrimaryGeneratorAction::PrimaryGeneratorAction(double x, double y, double z)
@@ -168,7 +167,8 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     
   phi = CLHEP::twopi*CLHEP::RandFlat::shoot(0.0,1.0)*rad; 
 
-  while(i==0){
+  while(i==0)
+  {
      theta = CLHEP::RandFlat::shoot(0.0,CLHEP::pi)*rad;
      test = CLHEP::RandFlat::shoot(0.0,1.0);
      if(sin(theta)>test)i++;
@@ -176,33 +176,29 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 
   //Particle direction
   G4double kx, ky, kz; //components
-  
   kx=cos(phi)*sin(theta);
   ky=sin(phi)*sin(theta);
   kz=cos(theta);
   G4ThreeVector dir_vec (kx,ky,kz);
-
   //Polarization 
   G4ThreeVector polar = Polarisation(dir_vec);  
   
+  // _____ PHOTON ENERGY THAT CHARACTERIZES MEDIUM__________ 
   fParticleGun->SetParticleEnergy(9.68*eV);
-//  fParticleGun->SetParticleEnergy(7.08*eV);
+  //fParticleGun->SetParticleEnergy(7.08*eV);
   fParticleGun->SetParticleMomentumDirection(dir_vec);
   fParticleGun->SetParticlePosition(G4ThreeVector(x0*m,y0*m,z0*m));
   //fParticleGun->SetParticlePosition(G4ThreeVector(x0*cm,y0*cm,z0*cm));
   fParticleGun->SetParticlePolarization(polar); 
-  
   G4ParticleDefinition* particle=
     //G4ParticleTable::GetParticleTable()->FindParticle("mu-");
     G4ParticleTable::GetParticleTable()->FindParticle("opticalphoton");
-  
   fParticleGun->SetParticleDefinition(particle);
   fParticleGun->GeneratePrimaryVertex(anEvent);
-
 }
 
-G4ThreeVector PrimaryGeneratorAction::Polarisation(G4ThreeVector d){
-
+G4ThreeVector PrimaryGeneratorAction::Polarisation(G4ThreeVector d)
+{
   if(d.mag()!=1.0) d = d.unit();
 
   G4ThreeVector a = d.orthogonal();
@@ -211,11 +207,10 @@ G4ThreeVector PrimaryGeneratorAction::Polarisation(G4ThreeVector d){
   b = b.unit();
   G4double theta = CLHEP::twopi*G4UniformRand();
   return cos(theta)*a + sin(theta)*b;
-
 }
 
-G4ThreeVector PrimaryGeneratorAction::TransversePosition(G4ThreeVector d, double r){
-
+G4ThreeVector PrimaryGeneratorAction::TransversePosition(G4ThreeVector d, double r)
+{
   if(d.mag()!=1.0) d = d.unit();
 
   G4ThreeVector a = d.orthogonal();
@@ -224,18 +219,7 @@ G4ThreeVector PrimaryGeneratorAction::TransversePosition(G4ThreeVector d, double
   b = b.unit();
   G4double theta = CLHEP::twopi*G4UniformRand();
   return r*(cos(theta)*a + sin(theta)*b);
-
 }
 
-
-void PrimaryGeneratorAction::DepthSampling(){
-
-
-  
-
-}
-
-void PrimaryGeneratorAction::GetEMShowerParameters(){
-
-  
-}
+void PrimaryGeneratorAction::DepthSampling(){}
+void PrimaryGeneratorAction::GetEMShowerParameters(){}

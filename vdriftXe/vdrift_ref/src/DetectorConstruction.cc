@@ -18,11 +18,9 @@
 #include <string>
 
 DetectorConstruction::DetectorConstruction()
-  
   :fDefaultMaterial(NULL),
    fPhysiWorld(NULL),fLogicWorld(NULL),fSolidWorld(NULL),
    fPhysiVol(NULL),fLogicVol(NULL),fSolidVol(NULL)
-  
 {
   fWorldSizeX=15.0; //in meters
   fWorldSizeY=10.0; //in meters
@@ -42,41 +40,26 @@ DetectorConstruction::DetectorConstruction()
   fLatZ = 60.0;
 
   fthickness=0.10; //m
-
-
   fAPA_thickness = 0.005; //m -- Temporarily using for FC
-
   fwindow = 0.6; //Arapuca window size in m
 }
   
 DetectorConstruction::DetectorConstruction(double size)
-  
   :fDefaultMaterial(NULL),
    fPhysiWorld(NULL),fLogicWorld(NULL),fSolidWorld(NULL),
-   fPhysiVol(NULL),fLogicVol(NULL),fSolidVol(NULL)
-  
-{
-  //  fWorldSizeX=Y=fWorldSizeZ=0;
-  //  fsize = size;
-  
+   fPhysiVol(NULL),fLogicVol(NULL),fSolidVol(NULL)  
+{//  fWorldSizeX=Y=fWorldSizeZ=0;
+ //  fsize = size;
 }  
 
 DetectorConstruction::~DetectorConstruction()
-{
-  delete fDefaultMaterial;
-
-}
+{delete fDefaultMaterial;}
 
 G4VPhysicalVolume* DetectorConstruction::Construct()
-  
-{
-  DefineMaterials();
-  return ConstructLine();
-}
+{DefineMaterials();return ConstructLine();}
 
 void DetectorConstruction::DefineMaterials()
 {  
-
   G4String name, symbol;             
   G4double density;            
   
@@ -110,18 +93,20 @@ void DetectorConstruction::DefineMaterials()
   G4Material* base_mat = man->FindOrBuildMaterial("G4_TEFLON");
   G4Material* env_mat = man->FindOrBuildMaterial("G4_lAr");
 
-  const G4int nEntries = 6;
-  G4double PhotonEnergy[nEntries] =
-    { 2.0*eV, 2.341*eV, 2.757*eV, 3.353*eV, 4.136*eV, 10.0*eV };
+  // const G4int nEntries = 6;
+  // G4double PhotonEnergy[nEntries] =
+  //   { 2.0*eV, 2.341*eV, 2.757*eV, 3.353*eV, 4.136*eV, 10.0*eV };
+  // G4double l_lAr[nEntries] =
+  //   {50*m,  50*m,  50*m,  50*m, 50*m, 50*m}; 
 
-  G4double l_lAr[nEntries] =
-    {50*m,  50*m,  50*m,  50*m, 50*m, 50*m }; 
-
+  const G4int nEntries = 8;
+  //_________ RELEVANT ENERGY VALUES Xe 175nm -> 7.08eV; Ar 128 -> 9.69eV_________
+  G4double PhotonEnergy[nEntries] = {2.5*eV, 5.0*eV, 7.0*eV, 7.5*eV, 8.0*eV, 9.0*eV, 9.5*eV, 10.136*eV};
+  G4double l_lAr[nEntries] =        {80*m,     80*m,   80*m,   80*m,   20*m,   20*m,   20*m,      20*m}; 
+  
   //  G4double n_lAr[nEntries] = {1.3,1.3,1.3,1.3,1.3};
   G4double n_lAr[72] = {1.2310665394518083, 1.2311200318147684, 1.2312727482978456, 1.2313496348295065, 1.2313506914097514, 1.2314023012909403, 1.2321538166889967, 1.231909947460871, 1.2321384938953646, 1.2323923169803301, 1.232443926861519, 1.2328668458034384, 1.233095392237932, 1.233053736213583, 1.233509772502325, 1.2335361057330418, 1.2334866090123424, 1.2338668153496684, 1.2343481282888824, 1.2344502914710154, 1.2346282846045646, 1.2350337675923626, 1.2354898038811046, 1.2358874461725522, 1.2361238333033957, 1.2364787629902494, 1.2371038951359457, 1.2374666655191495, 1.237720488604115, 1.2384292913975776, 1.2388853276863196, 1.2393413639750617, 1.2402271033218288, 1.2409106294648191, 1.2417458155106422, 1.2425810015564651, 1.2435678475051206, 1.2446558000556642, 1.245844859208096, 1.2472614082147766, 1.2488296171242892, 1.2505242092861624, 1.2525221212537003, 1.2548739063278473, 1.257579564508603, 1.2607654790483278, 1.2644822032479663, 1.269108886864599, 1.2747719131505861, 1.2816987719601767, 1.2910690403154002, 1.302368759656658, 1.316713517166515, 1.3329411664124329, 1.3493804523854165, 1.365926455672306, 1.3820018039345536, 1.4010549636291998, 1.423580491960391, 1.442600693158671, 1.46103487273757, 1.4894895758980782, 1.508978836972031, 1.5300372520419365, 1.5496431051408859, 1.5737334642006038, 1.5996151986767673, 1.6187496758472137, 1.6361783106957755, 1.6540241603412935, 1.672490509546729, 1.69156768392026};
-
   G4double Energy_n_lar[72] = {1.88901692613609*eV, 1.915491549763*eV, 1.94434453495496*eV, 1.9740800365654*eV, 2.00473917327901*eV, 2.03636565851099*eV, 2.0690060083582*eV, 2.1027097698752*eV, 2.1375297720313*eV, 2.17352240202191*eV, 2.21074790997382*eV, 2.24927074550798*eV, 2.28915993011439*eV, 2.33048946986518*eV, 2.37333881365753*eV, 2.41779336295621*eV, 2.46394503991691*eV, 2.51189292184303*eV, 2.56174395119099*eV, 2.61361373183203*eV, 2.66762742404865*eV, 2.72392075285046*eV, 2.78264114670945*eV, 2.84394902682875*eV, 2.90801927068415*eV, 2.97504287795441*eV, 3.04522887226339*eV, 3.11880647861692*eV, 3.19602762431763*eV, 3.27716982084588*eV, 3.36253949617556*eV, 3.45247586185779*eV, 3.54735541774646*eV, 3.64759722049586*eV, 3.75366907130329*eV, 3.86609481562225*eV, 3.98546299517591*eV, 4.11243715385428*eV, 4.24776817847434*eV, 4.39230915909235*eV, 4.54703339014745*eV, 4.71305631519082*eV, 4.89166246132417*eV, 5.08433873911506*eV, 5.29281593505014*eV, 5.51912084854449*eV, 5.76564240171605*eV, 6.03521629502331*eV, 6.33123457629323*eV, 6.65778911807759*eV, 7.01986191167459*eV, 7.42358102512033*eV, 7.80768693883725*eV, 8.18166617653237*eV, 8.49578904787588*eV, 8.75179837892604*eV, 8.97145190403002*eV, 9.21112941189563*eV, 9.40734062594689*eV, 9.56190983757659*eV, 9.71915769371575*eV, 9.88023992289941*eV, 9.99798584772925*eV, 10.0930619775564*eV, 10.1644798618311*eV, 10.2587258039568*eV, 10.3321720936895*eV, 10.3923239488175*eV, 10.4560982471211*eV, 10.4827908882082*eV, 10.5288181909777*eV, 10.5783779318939*eV};
-
   G4double ray_e_lAr[21] = { 1.18626*eV, 1.68626*eV, 2.18626*eV, 2.68626*eV, 3.18626*eV, 3.68626*eV, 4.18626*eV, 4.68626*eV, 5.18626*eV, 5.68626*eV, 6.18626*eV, 6.68626*eV, 7.18626*eV, 7.68626*eV, 8.18626*eV, 8.68626*eV, 9.18626*eV, 9.68626*eV, 10.1863*eV, 10.6863*eV, 11.1863*eV};
   G4double ray_s_lAr[21] = { 1200800*cm, 390747*cm, 128633*cm, 54969.1*cm, 27191.8*cm, 14853.7*cm, 8716.9*cm, 5397.42*cm, 3481.37*cm, 2316.51*cm, 1577.63*cm, 1092.02*cm, 763.045*cm, 534.232*cm, 371.335*cm, 252.942*cm, 165.38*cm, 99.9003*cm, 51.2653*cm, 17.495*cm, 0.964341*cm };
 
@@ -129,7 +114,6 @@ void DetectorConstruction::DefineMaterials()
   lAr_pt->AddProperty("RINDEX", Energy_n_lar, n_lAr, 72);
   lAr_pt->AddProperty("RAYLEIGH", ray_e_lAr, ray_s_lAr, 21);
   lAr_pt->AddProperty("ABSLENGTH", PhotonEnergy, l_lAr, nEntries);
-
   env_mat->SetMaterialPropertiesTable(lAr_pt);
   
   const G4int num = 3;
@@ -162,7 +146,6 @@ void DetectorConstruction::DefineMaterials()
   fG10 = G10;
   // DISPLAY MATERIALS
   G4cout << G4endl << *(G4Material::GetMaterialTable()) << G4endl;
-
 }
 
 G4VPhysicalVolume* DetectorConstruction::ConstructLine()
@@ -170,60 +153,49 @@ G4VPhysicalVolume* DetectorConstruction::ConstructLine()
   // WORLD
   //  fWorldSizeXY  = 2*m;
   //  fWorldSizeZ   = 2*m;
-     
   //*************
   // WORLD VOLUME
   //*************
-  
-  fSolidWorld = new G4Box("World",			         //its name
-		  fWorldSizeX/2*m,fWorldSizeY/2*m,fWorldSizeZ/2*m);  //its size
-  
-  
-  fLogicWorld = new G4LogicalVolume(fSolidWorld,	//its solid
-				    fDefaultMaterial,	//its material
-				    "World");		//its name
-  
-  fPhysiWorld = new G4PVPlacement(0,			//no rotation
-  				 G4ThreeVector(),	//at (0,0,0)
-                                 "World",		//its name
-                                 fLogicWorld,		//its logical volume
-                                 NULL,			//its mother  volume
-                                 false,			//no boolean operation
-                                 0);			//copy number
+  fSolidWorld = new G4Box("World",fWorldSizeX/2*m,fWorldSizeY/2*m,fWorldSizeZ/2*m); 
+  //its name; its size
+  fLogicWorld = new G4LogicalVolume(fSolidWorld,fDefaultMaterial,"World");		
+  //its solid; its material; its name
+  fPhysiWorld = new G4PVPlacement(0,G4ThreeVector(),"World",fLogicWorld,NULL,false,0);
+  //no rotation; (0,0,0); its name; its logical volume; its mother volume; no boolean operation; copy number
 
   G4Box* fSolidCryostat = new G4Box("Cryostat",(fCryostat_x/2+0.1)*m, (fCryostat_y/2.0+0.1)*m,(fCryostat_z/2+0.1)*m); //make it a little bigger to avoid overlaps
   G4LogicalVolume* fLogicCryostat = new G4LogicalVolume(fSolidCryostat,fDefaultMaterial,"Cryostat");
   G4VPhysicalVolume* fPhysCryostat = new G4PVPlacement(0,G4ThreeVector(0,0,0),"Cryostat",
-                                 fLogicCryostat,     //its logical volume
-                                 fPhysiWorld,    	//its mother  volume
-                                 false,			//no boolean operation
-				 0,
-				 true); //check for overlaps
+        fLogicCryostat,     //its logical volume
+        fPhysiWorld,    	//its mother  volume
+        false,			//no boolean operation
+				0,
+				true); //check for overlaps
 
   G4Box* ShellOut = new G4Box("ShellOut",(fCryostat_x/2+0.3)*m, (fCryostat_y/2.0+0.3)*m,(fCryostat_z/2+0.3)*m);
   G4SubtractionSolid* fShell = new G4SubtractionSolid("Shell", ShellOut, fSolidCryostat);
   G4LogicalVolume* fLogicShell = new G4LogicalVolume(fShell,fSteel,"Sheel");
   G4VPhysicalVolume* fPhysShell = new G4PVPlacement(0,G4ThreeVector(0,0,0),"Sheel",
-                                 fLogicShell,     //its logical volume
-                                 fPhysiWorld,    	//its mother  volume
-                                 false,			//no boolean operation
-                                 0);
+        fLogicShell,     //its logical volume
+        fPhysiWorld,    	//its mother  volume
+        false,			//no boolean operation
+        0);
 
   G4Box* fSolidCathode = new G4Box("Cathode",(fCathode_x/2)*m,fthickness/2*m,(fCathode_z/2)*m);
   G4LogicalVolume* fLogicCathode = new G4LogicalVolume(fSolidCathode,fSteel,"Cathode");
   G4VPhysicalVolume* fPhysiCathode = new G4PVPlacement(0,G4ThreeVector(0,(-fCryostat_y/2.0-fthickness/2)*m,0),"Cathode",
-                                 fLogicCathode,     //its logical volume
-                                 fPhysCryostat,    	//its mother  volume
-                                 false,			//no boolean operation
-				 0,
-				 true); //check for overlaps                    
+        fLogicCathode,     //its logical volume
+        fPhysCryostat,    	//its mother  volume
+        false,			//no boolean operation
+				0,
+				true); //check for overlaps                    
   G4LogicalVolume* fLogicAnode = new G4LogicalVolume(fSolidCathode,fSteel,"Anode");
   G4VPhysicalVolume* fPhysiAnode = new G4PVPlacement(0,G4ThreeVector(0,(fCryostat_y/2.0+fthickness/2)*m,0),"Anode",
-                                 fLogicAnode,     //its logical volume
-                                 fPhysCryostat,    	//its mother  volume
-                                 false,			//no boolean operation
-				 0,
-				 true); //check for overlaps     
+        fLogicAnode,     //its logical volume
+        fPhysCryostat,    	//its mother  volume
+        false,			//no boolean operation
+				0,
+				true); //check for overlaps     
 
 //FC Structure
 
@@ -251,7 +223,6 @@ G4VPhysicalVolume* DetectorConstruction::ConstructLine()
 						"FieldCageWide", fLogicFCwide, fPhysCryostat, false, i, true);
       ph_cp2  = new G4PVPlacement(r,G4ThreeVector(-fFC_x/2.*m,ypos*m,0),
 						"FieldCageWide", fLogicFCwide, fPhysCryostat, false, i+107, true);
-
   }
 
   ypos+=0.06;
@@ -287,10 +258,10 @@ G4VPhysicalVolume* DetectorConstruction::ConstructLine()
   G4SubtractionSolid* fSolidFCShort = new G4SubtractionSolid("FieldCageShort", FCAuxShort, FCAuxShOut, 0, G4ThreeVector((2.+5./2.)*mm,0.,0.));
   G4LogicalVolume* fLogicFCShort = new G4LogicalVolume(fSolidFCShort,fAluminium,"FieldCageShort");
   G4VPhysicalVolume* fPhysFCShort = new G4PVPlacement(rSh,G4ThreeVector(0,ypos*m,fFC_z/2.*m),"FieldCageShort",
-                                 fLogicFCShort,     //its logical volume
-                                 fPhysCryostat,    	//its mother  volume
-                                 false,			//no boolean operation
-				 0); 
+        fLogicFCShort,     //its logical volume
+        fPhysCryostat,    	//its mother  volume
+        false,			//no boolean operation
+				0); 
 
   G4PVPlacement* sh_cp2  = new G4PVPlacement(rSh2,G4ThreeVector(0,ypos*m,-fFC_z/2*m),"FieldCageShort", fLogicFCShort, fPhysCryostat, false,1, true);
 
@@ -303,7 +274,6 @@ G4VPhysicalVolume* DetectorConstruction::ConstructLine()
   }
 
   //ARAPUCAs
-
   G4Box* AraWindowLat = new G4Box("ArapucaWindow",fthickness/4*m,fwindow/2*m,fwindow/2*m);
   G4LogicalVolume* fLogicAraWindowLat = new G4LogicalVolume(AraWindowLat,facrylic,"ArapucaWindow");
   
@@ -372,25 +342,25 @@ G4VPhysicalVolume* DetectorConstruction::ConstructLine()
         (-fCryostat_z/2+(j-ncol+1)*3.0)*m),name2.c_str(), fLogicAraWindowLat, fPhysCryostat, false,0, true);
   }
 }
-  
-  
-  //Surfaces setup
 
-  //lAr-Anode interface
+  const G4int nEntries = 8;
+  //_________ RELEVANT ENERGY VALUES Xe 175nm -> 7.08eV; Ar 128 -> 9.69eV_________
+  G4double PhotonEnergy[nEntries] =
+    { 2.5*eV, 5.0*eV, 7.0*eV, 7.5*eV, 8.0*eV, 9.0*eV, 9.5*eV, 10.136*eV};
 
+  //Surfaces setup; lAr-Anode interface
   G4OpticalSurface* AnodeSurface = new G4OpticalSurface("AnodeSurface");
   AnodeSurface->SetType(dielectric_metal);
   AnodeSurface->SetModel(unified);
   AnodeSurface->SetFinish(ground);
   AnodeSurface->SetSigmaAlpha(0.0*deg); // for vikuit
-  
-  const G4int nEntries = 8;
-  G4double PhotonEnergy[nEntries] =
-    { 2.5*eV, 5.0*eV, 7.0*eV, 7.5*eV, 8.0*eV, 9.0*eV, 9.5*eV, 10.136*eV};
 
+  //_______ANODE REFLECTIVITY CHANGE (WITH 40% SOLID AREA) 0.2 -> 0.3*0.4 and 0.0 -> 0.15*0.4______________
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////
   G4double Anode_r[nEntries] = {0.20, 0.20, 0.20, 0.20, 0.0, 0.0, 0.0, 0.0}; //reflection coef for base
-  //G4double Anode_r[nEntries] = {0.5, 0.5, 0.5, 0.5, 0.0, 0.0, 0.0, 0.0}; //reflection coef for base
   G4double Anode_e[nEntries] = {0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0}; //absorption coefficient
+  // G4double Anode_r[nEntries] = {0.12, 0.12, 0.12, 0.12, 0.06, 0.06, 0.06, 0.06}; //reflection coef for base
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   G4MaterialPropertiesTable* AnodeSurface_pt = new G4MaterialPropertiesTable();
 
@@ -400,16 +370,16 @@ G4VPhysicalVolume* DetectorConstruction::ConstructLine()
   AnodeSurface->SetMaterialPropertiesTable(AnodeSurface_pt);
   new G4LogicalSkinSurface("AnodeSurface", fLogicAnode, AnodeSurface);
 
-
   G4OpticalSurface* FCSurface = new G4OpticalSurface("FCSurface");
   FCSurface->SetType(dielectric_metal);
   FCSurface->SetModel(unified);
   FCSurface->SetFinish(ground);
   FCSurface->SetSigmaAlpha(0.0*deg); // for vikuit
   
-  G4double FC_r[nEntries] = {0.26, 0.26, 0.26, 0.26, 0.26, 0.26, 0.26, 0.26}; //reflection coef for base
-  //G4double FC_r[nEntries] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}; //reflection coef for base
+  //_____________________________FC REFLECTIVITY CHANGE 0.2 -> 0.7 ______________________________
+  G4double FC_r[nEntries] = {0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7,}; //reflection coef for base
   G4double FC_e[nEntries] = {0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0}; //absorption coefficient
+  //G4double FC_r[nEntries] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}; //reflection coef for base
   
   G4MaterialPropertiesTable* FCSurface_pt = new G4MaterialPropertiesTable();
 
@@ -418,14 +388,26 @@ G4VPhysicalVolume* DetectorConstruction::ConstructLine()
 
   FCSurface->SetMaterialPropertiesTable(FCSurface_pt);
   new G4LogicalSkinSurface("FCSurfaceShort", fLogicFCShort, FCSurface);
-
   new G4LogicalSkinSurface("FCSurfaceSlim", fLogicFCSlim, FCSurface);
-
   new G4LogicalSkinSurface("FCSurfaceWide", fLogicFCwide, FCSurface);
 
+  // _________________ CHANGE NEW CRYOSTAT PROPRTIES _____________________________________
+  G4OpticalSurface* CryostatSurface = new G4OpticalSurface("CryostatSurface");
+  CryostatSurface->SetType(dielectric_metal);
+  CryostatSurface->SetModel(unified);
+  CryostatSurface->SetFinish(ground);
+  CryostatSurface->SetSigmaAlpha(0.0*deg); // for vikuit
 
-
+  G4double Cryo_r[nEntries] = {0.4, 0.4, 0.4, 0.4, 0.3, 0.3, 0.3, 0.3}; //reflection coef for base
+  G4double Cryo_e[nEntries] = {0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0}; //absorption coefficient
   
+  G4MaterialPropertiesTable* CryostatSurface_pt = new G4MaterialPropertiesTable();
+
+  CryostatSurface_pt->AddProperty("REFLECTIVITY", PhotonEnergy, Cryo_r, nEntries);
+  CryostatSurface_pt->AddProperty("EFFICIENCY", PhotonEnergy, Cryo_e, nEntries);
+  
+  CryostatSurface->SetMaterialPropertiesTable(CryostatSurface_pt);
+  new G4LogicalSkinSurface("CryostatSurfaceShort", fLogicCryostat, CryostatSurface);
   
   G4VisAttributes* simpleWorldVisAtt= new G4VisAttributes(G4Colour(1.0,1.0,1.0)); //White
   simpleWorldVisAtt->SetVisibility(true);
