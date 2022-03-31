@@ -13,7 +13,7 @@ for x in $(LC_ALL=en_US.UTF-8 seq $i_x $step_x $f_x) ; do
     for y in $(LC_ALL=en_US.UTF-8 seq $i_y $step_y $f_y) ; do
         for z in $(LC_ALL=en_US.UTF-8 seq $i_z $step_z $f_z) ; do
             ./vdrift_build/g4workshop $x $y $z
-            mv -- arapuca* /nashome/s/smanthey/standalone/NEW_PARAM/
+            mv -- arapuca* /nashome/s/smanthey/standalone/NEW_PARAM_AR/
         done
     done
 done
