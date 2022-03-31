@@ -183,7 +183,7 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   G4ThreeVector dir_vec (kx,ky,kz);
 
   //Polarization 
-  G4ThreeVector polar = Polarisation(dir_vec);
+  G4ThreeVector polar = Polarisation(dir_vec);  
   
   fParticleGun->SetParticleEnergy(9.68*eV);
 //  fParticleGun->SetParticleEnergy(7.08*eV);

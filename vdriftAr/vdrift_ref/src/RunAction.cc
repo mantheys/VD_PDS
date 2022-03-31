@@ -42,9 +42,9 @@ void RunAction::BeginOfRunAction(const G4Run*)
   
   G4cout << "Using " << man->GetType() << " analysis manager" << G4endl;
 
-  std::string s_x = convertToString(x0,4);
-  std::string s_y = convertToString(y0,4);
-  std::string s_z = convertToString(z0,4);
+  std::string s_x = convertToString(x0,5);
+  std::string s_y = convertToString(y0,5);
+  std::string s_z = convertToString(z0,5);
 
   G4String root_name = std::string("arapuca")+"_"+s_x+"_"+s_y+"_"+s_z+".root";
   
