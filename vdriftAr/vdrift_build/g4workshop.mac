@@ -3,7 +3,6 @@
 /run/initialize
 
 # Uncomment this line of you want visualization
-#/control/macroPath /nashome/s/smanthey/standalone/VD_PDS/vdriftAr/vdrift_build/
 #/control/execute vis.mac
 
 /tracking/verbose 0

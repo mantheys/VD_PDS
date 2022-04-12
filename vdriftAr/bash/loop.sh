@@ -4,9 +4,9 @@
 # step_x=0.1625;step_y=0.1625;step_z=0.25
 
 #test version with reduced values
-i_x=0.1625;i_y=-3.3375;i_z=0.0
-f_x=6.3375;f_y=3.3375;f_z=3.0
-step_x=0.325;step_y=0.325;step_z=1.0
+i_x=0.0;i_y=-3.0875;i_z=0.0
+f_x=6.4125;f_y=3.0875;f_z=3.0
+step_x=0.3375;step_y=0.325;step_z=1.0
 
 for x in $(LC_ALL=en_US.UTF-8 seq $i_x $step_x $f_x) ; do
     for y in $(LC_ALL=en_US.UTF-8 seq $i_y $step_y $f_y) ; do

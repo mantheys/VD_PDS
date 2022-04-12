@@ -1,7 +1,7 @@
-set(CMAKE_C_COMPILER "/cvmfs/dune.opensciencegrid.org/products/dune/gcc/v7_3_0/Linux64bit+3.10-2.17/bin/cc")
+set(CMAKE_C_COMPILER "/cvmfs/larsoft.opensciencegrid.org/products/gcc/v9_3_0/Linux64bit+3.10-2.17/bin/cc")
 set(CMAKE_C_COMPILER_ARG1 "")
 set(CMAKE_C_COMPILER_ID "GNU")
-set(CMAKE_C_COMPILER_VERSION "7.3.0")
+set(CMAKE_C_COMPILER_VERSION "9.3.0")
 set(CMAKE_C_COMPILER_VERSION_INTERNAL "")
 set(CMAKE_C_COMPILER_WRAPPER "")
 set(CMAKE_C_STANDARD_COMPUTED_DEFAULT "11")
@@ -17,9 +17,9 @@ set(CMAKE_C_SIMULATE_VERSION "")
 
 
 set(CMAKE_AR "/usr/bin/ar")
-set(CMAKE_C_COMPILER_AR "/cvmfs/dune.opensciencegrid.org/products/dune/gcc/v7_3_0/Linux64bit+3.10-2.17/bin/gcc-ar")
+set(CMAKE_C_COMPILER_AR "/cvmfs/larsoft.opensciencegrid.org/products/gcc/v9_3_0/Linux64bit+3.10-2.17/bin/gcc-ar")
 set(CMAKE_RANLIB "/usr/bin/ranlib")
-set(CMAKE_C_COMPILER_RANLIB "/cvmfs/dune.opensciencegrid.org/products/dune/gcc/v7_3_0/Linux64bit+3.10-2.17/bin/gcc-ranlib")
+set(CMAKE_C_COMPILER_RANLIB "/cvmfs/larsoft.opensciencegrid.org/products/gcc/v9_3_0/Linux64bit+3.10-2.17/bin/gcc-ranlib")
 set(CMAKE_LINKER "/usr/bin/ld")
 set(CMAKE_COMPILER_IS_GNUCC 1)
 set(CMAKE_C_COMPILER_LOADED 1)
@@ -69,5 +69,5 @@ endif()
 
 
 set(CMAKE_C_IMPLICIT_LINK_LIBRARIES "gcc;gcc_s;c;gcc;gcc_s")
-set(CMAKE_C_IMPLICIT_LINK_DIRECTORIES "/cvmfs/dune.opensciencegrid.org/products/dune/gcc/v7_3_0/Linux64bit+3.10-2.17/lib/gcc/x86_64-pc-linux-gnu/7.3.0;/cvmfs/dune.opensciencegrid.org/products/dune/gcc/v7_3_0/Linux64bit+3.10-2.17/lib/gcc;/cvmfs/dune.opensciencegrid.org/products/dune/gcc/v7_3_0/Linux64bit+3.10-2.17/lib64;/lib64;/usr/lib64;/cvmfs/dune.opensciencegrid.org/products/dune/gcc/v7_3_0/Linux64bit+3.10-2.17/lib")
+set(CMAKE_C_IMPLICIT_LINK_DIRECTORIES "/cvmfs/larsoft.opensciencegrid.org/products/gcc/v9_3_0/Linux64bit+3.10-2.17/lib/gcc/x86_64-pc-linux-gnu/9.3.0;/cvmfs/larsoft.opensciencegrid.org/products/gcc/v9_3_0/Linux64bit+3.10-2.17/lib/gcc;/cvmfs/larsoft.opensciencegrid.org/products/gcc/v9_3_0/Linux64bit+3.10-2.17/lib64;/lib64;/usr/lib64;/cvmfs/larsoft.opensciencegrid.org/products/gcc/v9_3_0/Linux64bit+3.10-2.17/lib")
 set(CMAKE_C_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES "")

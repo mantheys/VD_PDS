@@ -59,10 +59,10 @@ RM = /cvmfs/larsoft.opensciencegrid.org/products/cmake/v3_13_1/Linux64bit+3.10-2
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /nashome/s/smanthey/standalone/VD_PDS/vdriftXe/vdrift_ref
+CMAKE_SOURCE_DIR = /nashome/s/smanthey/standalone/PDS_VD/vdriftXe/vdrift_ref
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /nashome/s/smanthey/standalone/VD_PDS/vdriftXe/vdrift_build
+CMAKE_BINARY_DIR = /nashome/s/smanthey/standalone/PDS_VD/vdriftXe/vdrift_build
 
 #=============================================================================
 # Target rules for target CMakeFiles/g4workshop.dir
@@ -71,7 +71,7 @@ CMAKE_BINARY_DIR = /nashome/s/smanthey/standalone/VD_PDS/vdriftXe/vdrift_build
 CMakeFiles/g4workshop.dir/all:
 	$(MAKE) -f CMakeFiles/g4workshop.dir/build.make CMakeFiles/g4workshop.dir/depend
 	$(MAKE) -f CMakeFiles/g4workshop.dir/build.make CMakeFiles/g4workshop.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/nashome/s/smanthey/standalone/VD_PDS/vdriftXe/vdrift_build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 "Built target g4workshop"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/nashome/s/smanthey/standalone/PDS_VD/vdriftXe/vdrift_build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 "Built target g4workshop"
 .PHONY : CMakeFiles/g4workshop.dir/all
 
 # Include target in all.
@@ -81,9 +81,9 @@ all: CMakeFiles/g4workshop.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/g4workshop.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /nashome/s/smanthey/standalone/VD_PDS/vdriftXe/vdrift_build/CMakeFiles 15
+	$(CMAKE_COMMAND) -E cmake_progress_start /nashome/s/smanthey/standalone/PDS_VD/vdriftXe/vdrift_build/CMakeFiles 15
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/g4workshop.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /nashome/s/smanthey/standalone/VD_PDS/vdriftXe/vdrift_build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /nashome/s/smanthey/standalone/PDS_VD/vdriftXe/vdrift_build/CMakeFiles 0
 .PHONY : CMakeFiles/g4workshop.dir/rule
 
 # Convenience name for target.

@@ -1,4 +1,4 @@
-# Install script for directory: /nashome/s/smanthey/standalone/VD_PDS/vdriftAr/vdrift_ref
+# Install script for directory: /nashome/s/smanthey/standalone/PDS_VD/vdriftAr/vdrift_ref
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -44,12 +44,12 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/g4workshop"
          RPATH "")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/nashome/s/smanthey/standalone/VD_PDS/vdriftAr/vdrift_build/g4workshop")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/nashome/s/smanthey/standalone/PDS_VD/vdriftAr/vdrift_build/g4workshop")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/g4workshop" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/g4workshop")
     file(RPATH_CHANGE
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/g4workshop"
-         OLD_RPATH "/cvmfs/larsoft.opensciencegrid.org/products/geant4/v4_10_3_p03e/Linux64bit+3.10-2.17-e17-prof/lib64:/cvmfs/larsoft.opensciencegrid.org/products/xerces_c/v3_2_2/Linux64bit+3.10-2.17-e17-prof/lib:/cvmfs/larsoft.opensciencegrid.org/products/clhep/v2_4_1_2/Linux64bit+3.10-2.17-e17-prof/lib:"
+         OLD_RPATH "/cvmfs/larsoft.opensciencegrid.org/products/geant4/v4_10_6_p01d/Linux64bit+3.10-2.17-e20-prof/lib64:/cvmfs/larsoft.opensciencegrid.org/products/root/v6_18_02a/Linux64bit+3.10-2.17-e17-prof/lib:/cvmfs/larsoft.opensciencegrid.org/products/xerces_c/v3_2_3a/Linux64bit+3.10-2.17-e20/lib:/cvmfs/larsoft.opensciencegrid.org/products/clhep/v2_4_4_1/Linux64bit+3.10-2.17-e20-prof/lib:"
          NEW_RPATH "")
     if(CMAKE_INSTALL_DO_STRIP)
       execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/g4workshop")
@@ -65,5 +65,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/nashome/s/smanthey/standalone/VD_PDS/vdriftAr/vdrift_build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/nashome/s/smanthey/standalone/PDS_VD/vdriftAr/vdrift_build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
