@@ -9,4 +9,4 @@ cd /nashome/s/smanthey/standalone/PDS_VD/vdriftXe/vdrift_build/
 cmake -DGeant4_DIR=$G4COMP ../vdrift_ref/
 make -j
 cd /nashome/s/smanthey/standalone/PDS_VD/vdriftXe/
-tar -czvf vdriftXe8x10_tar.tgz vdrift_build
+tar -czvf vdriftXe4x20_buffer_05_tar.tgz vdrift_build
