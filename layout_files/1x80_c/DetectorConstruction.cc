@@ -277,19 +277,19 @@ G4VPhysicalVolume* DetectorConstruction::ConstructLine()
   G4Box* AraWindowLat = new G4Box("ArapucaWindow",fthickness/4*m,fwindow/2*m,fwindow/2*m);
   G4LogicalVolume* fLogicAraWindowLat = new G4LogicalVolume(AraWindowLat,facrylic,"ArapucaWindow");
   
-  int ncol=40, nrows=2;
-  float vspace = 1.3;
+  int ncol=80, nrows=1;
+  float vspace = 1.7;
   std::string name, physname, name2, physname2;
   for(int i=0; i<nrows; i++){
     for(int j=0; j<ncol;j++){
       name = "ArapucaWindowLat"; name.append(std::to_string(i+1)); name.append(std::to_string(j+1));
       physname = "fPhysAraWindowLat"; physname.append(std::to_string(i+1)); physname.append(std::to_string(j+1));
       G4VPhysicalVolume* physname = new G4PVPlacement(0,G4ThreeVector((fCryostat_x/2-fthickness/4)*m,(fCryostat_y/2-0.8*i-vspace)*m,
-								      (-fCryostat_z/2+1.5/2+j*1.5)*m),name.c_str(), fLogicAraWindowLat, fPhysCryostat, false,0, true);
+								      (-fCryostat_z/2+0.75/2+j*0.75)*m),name.c_str(), fLogicAraWindowLat, fPhysCryostat, false,0, true);
       name2 = "ArapucaWindowLlat"; name2.append(std::to_string(i+1)); name2.append(std::to_string(j+1));
       physname2 = "fPhysAraWindowLlat"; physname2.append(std::to_string(i+1)); physname2.append(std::to_string(j+1));
       G4VPhysicalVolume* physname2 = new G4PVPlacement(0,G4ThreeVector((-fCryostat_x/2+fthickness/4)*m,(fCryostat_y/2-0.8*i-vspace)*m,
-								       (-fCryostat_z/2+1.5/2+j*1.5)*m),name2.c_str(), fLogicAraWindowLat, fPhysCryostat, false,0, true);
+								       (-fCryostat_z/2+0.75/2+j*0.75)*m),name2.c_str(), fLogicAraWindowLat, fPhysCryostat, false,0, true);
     }
   }
   
@@ -377,7 +377,7 @@ G4VPhysicalVolume* DetectorConstruction::ConstructLine()
   FCSurface->SetFinish(ground);
   FCSurface->SetSigmaAlpha(0.0*deg); // for vikuit
   
-  //_____________________________FC REFLECTIVITY CHANGE 0.2 -> 0.7 ______________________________
+  //_____________________________FC REFLECTIVITY CHANGE 0.0 -> 0.7 ______________________________
   G4double FC_r[nEntries] = {0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7,}; //reflection coef for base
   G4double FC_e[nEntries] = {0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0}; //absorption coefficient
   //G4double FC_r[nEntries] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}; //reflection coef for base
@@ -445,5 +445,3 @@ G4VPhysicalVolume* DetectorConstruction::ConstructLine()
   fLogicCathode->SetVisAttributes(simplePlain);
   return fPhysiWorld;
 }
-
-

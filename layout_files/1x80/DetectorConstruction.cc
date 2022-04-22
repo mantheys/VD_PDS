@@ -376,7 +376,7 @@ G4VPhysicalVolume* DetectorConstruction::ConstructLine()
   FCSurface->SetFinish(ground);
   FCSurface->SetSigmaAlpha(0.0*deg); // for vikuit
   
-  //_____________________________FC REFLECTIVITY CHANGE 0.2 -> 0.7 ______________________________
+  //_____________________________FC REFLECTIVITY CHANGE 0.0 -> 0.7 ______________________________
   G4double FC_r[nEntries] = {0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7,}; //reflection coef for base
   G4double FC_e[nEntries] = {0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0}; //absorption coefficient
   //G4double FC_r[nEntries] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}; //reflection coef for base
@@ -444,5 +444,3 @@ G4VPhysicalVolume* DetectorConstruction::ConstructLine()
   fLogicCathode->SetVisAttributes(simplePlain);
   return fPhysiWorld;
 }
-
-
