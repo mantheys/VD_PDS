@@ -285,18 +285,18 @@ G4VPhysicalVolume* DetectorConstruction::ConstructLine()
     }
   }
  
-  //Extra PDs on laterals
-  ncol=19;
-  for(int i=0; i<nrows; i++){
-	  for(int j=ncol; j<2*ncol;j++){
-	    name = "ArapucaWindowLat"; name.append(std::to_string(i+1)); name.append(std::to_string(j+2));
-	    physname = "fPhysAraWindowLat"; physname.append(std::to_string(i+1)); physname.append(std::to_string(j+2));
-      G4VPhysicalVolume* physname = new G4PVPlacement(0,G4ThreeVector((fCryostat_x/2-fthickness/4)*m,(fCryostat_y/2-0.5-0.8*i)*m,(-fCryostat_z/2+(j-ncol+1)*3.0)*m),name.c_str(), fLogicAraWindowLat, fPhysCryostat, false,0, true);
-      name2 = "ArapucaWindowLlat"; name2.append(std::to_string(i+1)); name2.append(std::to_string(j+2));
-      physname2 = "fPhysAraWindowLlat"; physname2.append(std::to_string(i+1)); physname2.append(std::to_string(j+2));
-      G4VPhysicalVolume* physname2 = new G4PVPlacement(0,G4ThreeVector((-fCryostat_x/2+fthickness/4)*m,(fCryostat_y/2-0.5-0.8*i)*m,(-fCryostat_z/2+(j-ncol+1)*3.0)*m),name2.c_str(), fLogicAraWindowLat, fPhysCryostat, false,0, true);
-    }
-  }
+  // //Extra PDs on laterals
+  // ncol=19;
+  // for(int i=0; i<nrows; i++){
+	//   for(int j=ncol; j<2*ncol;j++){
+	//     name = "ArapucaWindowLat"; name.append(std::to_string(i+1)); name.append(std::to_string(j+2));
+	//     physname = "fPhysAraWindowLat"; physname.append(std::to_string(i+1)); physname.append(std::to_string(j+2));
+  //     G4VPhysicalVolume* physname = new G4PVPlacement(0,G4ThreeVector((fCryostat_x/2-fthickness/4)*m,(fCryostat_y/2-0.5-0.8*i)*m,(-fCryostat_z/2+(j-ncol+1)*3.0)*m),name.c_str(), fLogicAraWindowLat, fPhysCryostat, false,0, true);
+  //     name2 = "ArapucaWindowLlat"; name2.append(std::to_string(i+1)); name2.append(std::to_string(j+2));
+  //     physname2 = "fPhysAraWindowLlat"; physname2.append(std::to_string(i+1)); physname2.append(std::to_string(j+2));
+  //     G4VPhysicalVolume* physname2 = new G4PVPlacement(0,G4ThreeVector((-fCryostat_x/2+fthickness/4)*m,(fCryostat_y/2-0.5-0.8*i)*m,(-fCryostat_z/2+(j-ncol+1)*3.0)*m),name2.c_str(), fLogicAraWindowLat, fPhysCryostat, false,0, true);
+  //   }
+  // }
 
   const G4int nEntries = 8; //_________ RELEVANT ENERGY VALUES Xe 175nm -> 7.08eV; Ar 128 -> 9.69eV_________
   G4double PhotonEnergy[nEntries] = { 2.5*eV, 5.0*eV, 7.0*eV, 7.5*eV, 8.0*eV, 9.0*eV, 9.5*eV, 10.136*eV};
