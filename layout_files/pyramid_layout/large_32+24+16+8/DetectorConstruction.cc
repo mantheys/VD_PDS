@@ -174,42 +174,47 @@ G4VPhysicalVolume* DetectorConstruction::ConstructLine()
   //____________________________________________________________FC STRUCTURE______________________________________________________________//
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+  //FC Structure
   //Longer lateral
   G4double ypos=-fCryostat_y/2.0 + 0.04; //in m
-  G4EllipticalTube* FCAuxwide = new G4EllipticalTube("FCAuxwide",5.*mm, 23.*mm,fFC_z/2*m); // thick wires
-  G4Box* FCAuxOut = new G4Box("FCAuxOut",5.*mm,23*mm,(fFC_z/2+1)*m);	
+  G4EllipticalTube* FCAuxwide = new G4EllipticalTube("FCAuxwide",5.*mm, 23.*mm,fFC_z/2*m);
+  G4Box* FCAuxOut = new G4Box("FCAuxOut",5.*mm,23*mm,(fFC_z/2+1)*m);
   G4SubtractionSolid* fSolidFCwide = new G4SubtractionSolid("FieldCageWide", FCAuxwide, FCAuxOut, 0, G4ThreeVector((2.+5/2)*mm,0.,0.));
   G4LogicalVolume* fLogicFCwide = new G4LogicalVolume(fSolidFCwide,fAluminium,"FieldCageWide");
-  G4VPhysicalVolume* fPhysFCwide = new G4PVPlacement(0,G4ThreeVector(fFC_x/2.*m,ypos*m,0),"FieldCageWide",fLogicFCwide,fPhysCryostat,false,0,true); 
-  //name, its logical volume, its mother  volume, no boolean operation
+  G4VPhysicalVolume* fPhysFCwide = new G4PVPlacement(0,G4ThreeVector(fFC_x/2.*m,ypos*m,0),"FieldCageWide",
+                                 fLogicFCwide,     //its logical volume
+                                 fPhysCryostat,    //its mother  volume
+                                 false,//no boolean operation
+ 0, true);
   G4RotationMatrix* r = new G4RotationMatrix();
   G4ThreeVector* axis = new G4ThreeVector(0.0,0.0,1.0);
   r->rotate(CLHEP::pi,axis);
-
-  G4PVPlacement* ph_cp2  = new G4PVPlacement(r,G4ThreeVector(-fFC_x/2.*m,ypos*m,0), "FieldCageWide", fLogicFCwide, fPhysCryostat, false, 1, true);
-
-  for(int i = 2; i<=41; i++)
-  { //40 copies of FCwide (~ 2m)
-  	  ypos+=0.06;
-      G4PVPlacement* ph_cp  = new G4PVPlacement(0,G4ThreeVector(fFC_x/2.*m,ypos*m,0),"FieldCageWide", fLogicFCwide, fPhysCryostat, false, i, true);
-      ph_cp2  = new G4PVPlacement(r,G4ThreeVector(-fFC_x/2.*m,ypos*m,0),"FieldCageWide", fLogicFCwide, fPhysCryostat, false, i+107, true);
+  //G4PVPlacement* ph_cp2  = new G4PVPlacement(r,G4ThreeVector(-fFC_x/2.*m,ypos*m,0), "FieldCageWide", fLogicFCwide, fPhysCryostat, false, 1, true);
+  /*for(int i = 2; i<=41; i++){ //40 copies of FCwide (~ 2m)
+    ypos+=0.06;
+      G4PVPlacement* ph_cp  = new G4PVPlacement(0,G4ThreeVector(fFC_x/2.*m,ypos*m,0),
+"FieldCageWide", fLogicFCwide, fPhysCryostat, false, i, true);
+      ph_cp2  = new G4PVPlacement(r,G4ThreeVector(-fFC_x/2.*m,ypos*m,0),
+"FieldCageWide", fLogicFCwide, fPhysCryostat, false, i+107, true);
   }
-  ypos+=0.06;
-
-  G4EllipticalTube* FCAuxSlim = new G4EllipticalTube("FCAuxSlim",5.*mm, 7.5*mm,fFC_z/2*m); // thin wires
-  G4Box* FCAuxSlimOut = new G4Box("FCAuxSlimOut",5.*mm,7.5*mm,(fFC_z/2+1)*m);	
+  ypos+=0.06;*/
+  G4EllipticalTube* FCAuxSlim = new G4EllipticalTube("FCAuxSlim",5.*mm, 7.5*mm,fFC_z/2*m);
+  G4Box* FCAuxSlimOut = new G4Box("FCAuxSlimOut",5.*mm,7.5*mm,(fFC_z/2+1)*m);
   G4SubtractionSolid* fSolidFCSlim = new G4SubtractionSolid("FieldCageSlim", FCAuxSlim, FCAuxSlimOut, 0, G4ThreeVector((2.+5/2)*mm,0.,0.));
   G4LogicalVolume* fLogicFCSlim = new G4LogicalVolume(fSolidFCSlim,fAluminium,"FieldCageSlim");
-  G4VPhysicalVolume* fPhysFCSlim = new G4PVPlacement(0,G4ThreeVector(fFC_x/2.*m,ypos*m,0),"FieldCageSlim",fLogicFCSlim,fPhysCryostat,false,0, true);
-  //its logical volume, its mother  volume, no boolean operation
-  ph_cp2  = new G4PVPlacement(r,G4ThreeVector(-fFC_x/2.*m,ypos*m,0), "FieldCageSlim", fLogicFCSlim, fPhysCryostat, false, 42, true);
-				 
-  for(int i = 43; i<=107; i++){ //63 copies of FCSlim
+  G4VPhysicalVolume* fPhysFCSlim = new G4PVPlacement(0,G4ThreeVector(fFC_x/2.*m,ypos*m,0),"FieldCageSlim",
+                                 fLogicFCSlim,     //its logical volume
+                                 fPhysCryostat,    //its mother  volume
+                                 false,//no boolean operation
+ 0, true);
+  G4PVPlacement* ph_cp2  = new G4PVPlacement(r,G4ThreeVector(-fFC_x/2.*m,ypos*m,0), "FieldCageSlim", fLogicFCSlim, fPhysCryostat, false, 1, true);
+  for(int i = 2; i<=107; i++){ //106 copies of FCSlim
     ypos+=0.06;
-    G4PVPlacement* ph_cp  = new G4PVPlacement(0,G4ThreeVector(fFC_x/2.*m,ypos*m,0),"FieldCageSlim", fLogicFCSlim, fPhysCryostat, false, i, true);
-    ph_cp2  = new G4PVPlacement(r,G4ThreeVector(-fFC_x/2.*m,ypos*m,0),"FieldCageSlim", fLogicFCSlim, fPhysCryostat, false, i+107, true);
+      G4PVPlacement* ph_cp  = new G4PVPlacement(0,G4ThreeVector(fFC_x/2.*m,ypos*m,0),
+"FieldCageSlim", fLogicFCSlim, fPhysCryostat, false, i, true);
+      ph_cp2  = new G4PVPlacement(r,G4ThreeVector(-fFC_x/2.*m,ypos*m,0),
+"FieldCageSlim", fLogicFCSlim, fPhysCryostat, false, i+107, true);
   }
-  
   //Shorter laterals
   ypos=-fCryostat_y/2.0 + 0.04; //in m
   G4RotationMatrix* rSh = new G4RotationMatrix();
@@ -239,16 +244,21 @@ G4VPhysicalVolume* DetectorConstruction::ConstructLine()
   G4Box* AraWindowLat = new G4Box("ArapucaWindow",fthickness/4*m,fwindow/2*m,fwindow/2*m);
   G4LogicalVolume* fLogicAraWindowLat = new G4LogicalVolume(AraWindowLat,facrylic,"ArapucaWindow");
   
-  int ncol=20, nrows=4; float buffer = 0.0;
+  int npyramid = 8; int nrows = 4; float buffer = 0.0;
   std::string name, physname, name2, physname2;
-  for(int i=0; i<nrows; i++){
-	  for(int j=0; j<ncol;j++){
-	    name = "ArapucaWindowLat"; name.append(std::to_string(i+1)); name.append(std::to_string(j+1));
-	    physname = "fPhysAraWindowLat"; physname.append(std::to_string(i+1)); physname.append(std::to_string(j+1));
-      G4VPhysicalVolume* physname = new G4PVPlacement(0,G4ThreeVector((fCryostat_x/2-fthickness/4-buffer)*m,(fCryostat_y/2-0.5-0.8*i)*m,(-fCryostat_z/2+1.5+j*3.0)*m),name.c_str(), fLogicAraWindowLat, fPhysCryostat, false,0, true);
-      name2 = "ArapucaWindowLlat"; name2.append(std::to_string(i+1)); name2.append(std::to_string(j+1));
-      physname2 = "fPhysAraWindowLlat"; physname2.append(std::to_string(i+1)); physname2.append(std::to_string(j+1));
-      G4VPhysicalVolume* physname2 = new G4PVPlacement(0,G4ThreeVector((-fCryostat_x/2+fthickness/4+buffer)*m,(fCryostat_y/2-0.5-0.8*i)*m,(-fCryostat_z/2+1.5+j*3.0)*m),name2.c_str(), fLogicAraWindowLat, fPhysCryostat, false,0, true);
+  G4double h_limit[nrows] = {0,0.9,1.8,2.7};
+  G4double py_start;
+  for(int k = 0; k<npyramid; k++){
+    py_start = k*4*1.8;
+    for(int i=0; i<nrows; i++){
+      for(int j=0; j<(4-i);j++){
+        name = "ArapucaWindowLat"; name.append(std::to_string(i+1)); name.append(std::to_string(j+1));
+        physname = "fPhysAraWindowLat"; physname.append(std::to_string(i+1)); physname.append(std::to_string(j+1));
+        G4VPhysicalVolume* physname = new G4PVPlacement(0,G4ThreeVector((fCryostat_x/2-fthickness/4-buffer)*m,(fCryostat_y/2-0.5-1.6*i)*m,(-fCryostat_z/2+2.1+py_start+h_limit[i]+j*1.8)*m),name.c_str(), fLogicAraWindowLat, fPhysCryostat, false,0, true);
+        name2 = "ArapucaWindowLlat"; name2.append(std::to_string(i+1)); name2.append(std::to_string(j+1));
+        physname2 = "fPhysAraWindowLlat"; physname2.append(std::to_string(i+1)); physname2.append(std::to_string(j+1));
+        G4VPhysicalVolume* physname2 = new G4PVPlacement(0,G4ThreeVector((-fCryostat_x/2+fthickness/4+buffer)*m,(fCryostat_y/2-0.5-1.6*i)*m,(-fCryostat_z/2+2.1+py_start+h_limit[i]+j*1.8)*m),name2.c_str(), fLogicAraWindowLat, fPhysCryostat, false,0, true);
+      }
     }
   }
   double cathode[16];
@@ -271,7 +281,7 @@ G4VPhysicalVolume* DetectorConstruction::ConstructLine()
   G4Box* AraWindowBot = new G4Box("ArapucaWindowBot",fwindow/2*m,fthickness/4*m,fwindow/2*m);
   G4LogicalVolume* fLogicAraWindowBot = new G4LogicalVolume(AraWindowBot,facrylic,"ArapucaWindowBot");
   
-  ncol=40;
+  int ncol=40;
   int ncat=8, aux=0, auxcat=0;
   std::string namecat, physnamecat;
   for(int i=0; i<ncol; i++){
